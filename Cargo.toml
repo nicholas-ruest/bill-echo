@@ -1,0 +1,25 @@
+[package]
+name = "bill-echo"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+description = "Private local web app for finding recurring charges and price creep in bank CSV data"
+license = "MIT"
+repository = "https://github.com/nicholas-ruest/bill-echo"
+readme = "README.md"
+keywords = ["finance", "csv", "recurring", "privacy"]
+categories = ["command-line-utilities", "web-programming::http-server"]
+
+[dependencies]
+axum = { version = "0.8.6", features = ["form"] }
+csv = "1.4.0"
+serde = { version = "1.0.228", features = ["derive"] }
+time = { version = "=0.3.55", features = ["macros", "parsing", "serde"] }
+tokio = { version = "1.48.0", features = ["macros", "net", "rt-multi-thread"] }
+
+[dev-dependencies]
+tower = { version = "0.5.2", features = ["util"] }
+
+[profile.release]
+strip = true
+lto = "thin"
